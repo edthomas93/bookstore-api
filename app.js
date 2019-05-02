@@ -1,15 +1,27 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
+const express = require('express');
+const app = express();
+const mongoose = require('mongoose');
 
-//Connect to mongoose
-mongoose.connect('mongodb://localhost/bookstore');
-var db = mongoose.connection;
+// DB Config
+const db = require('./config/key').mongoURI;
+
+// connect to mongoDB
+mongoose
+  .connect(db, {useNewUrlParser: true})
+  .then(() => {
+    console.log('MongoDB Connected');
+  })
+  .catch(err => {
+    console.log(err);
+    console.log('MongoDB Not Connected');
+  });
+
+// routes
 
 app.get('/', (req, res) => {
-  res.send('Hello world!');
+  res.send('Please use /api/books or /api/genres');
 });
 
-app.listen(3000);
-console.log('Running on port 3000');
+// run server
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`server running on port ${port}`));
