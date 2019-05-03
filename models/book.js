@@ -34,6 +34,11 @@ const getBooks = (callback) => {
   books.find(callback);
 };
 
+const getBookById = (id, callback) => {
+  books.findById(id, callback);
+};
+
 module.exports = {
-  getBooks
+  getBooks,
+  getBookById
 };

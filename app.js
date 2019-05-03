@@ -47,6 +47,17 @@ app.get('/api/books', (req, res) => {
   });
 });
 
+app.get('/api/books/:_id', (req, res) => {
+  bookModel.getBookById(req.params._id, (err, response) => {
+    if (err) {
+      res.sendStatus(500);
+      throw err;
+    } else {
+      res.status(200).json(response);
+    };
+  });
+});
+
 // run server
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`server running on port ${port}`));
