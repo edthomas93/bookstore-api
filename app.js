@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const genreModel = require('./models/genre');
 const bookModel = require('./models/book');
+
+app.use(bodyParser.json());
 
 // DB Config
 const db = require('./config/key').mongoURI;
@@ -27,6 +30,18 @@ app.get('/', (req, res) => {
 
 app.get('/api/genres', (req, res) => {
   genreModel.getGenres((err, response) => {
+    if (err) {
+      res.sendStatus(500);
+      throw err;
+    } else {
+      res.status(200).json(response);
+    };
+  });
+});
+
+app.post('/api/genres', (req, res) => {
+  const genre = req.body;  
+  genreModel.addGenre(genre, (err, response) => {
     if (err) {
       res.sendStatus(500);
       throw err;

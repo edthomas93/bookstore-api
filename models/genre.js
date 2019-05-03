@@ -18,6 +18,11 @@ const getGenres = (callback) => {
   genres.find(callback);
 };
 
+const addGenre = (genre, callback) => {
+  genres.create(genre, callback);
+};
+
 module.exports = {
-  getGenres
+  getGenres,
+  addGenre
 };
