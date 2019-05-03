@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-const genre = require('./models/genre');
+const genreModel = require('./models/genre');
+const bookModel = require('./models/book');
 
 // DB Config
 const db = require('./config/key').mongoURI;
@@ -25,11 +26,24 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/genres', (req, res) => {
-  genre.getGenres((err, genres) => {
+  genreModel.getGenres((err, response) => {
     if (err) {
+      res.sendStatus(500);
       throw err;
-    }
-    res.status(200).json(genres);
+    } else {
+      res.status(200).json(response);
+    };
+  });
+});
+
+app.get('/api/books', (req, res) => {
+  bookModel.getBooks((err, response) => {
+    if (err) {
+      res.sendStatus(500);
+      throw err;
+    } else {
+      res.status(200).json(response);
+    };
   });
 });
 
