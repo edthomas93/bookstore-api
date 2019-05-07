@@ -38,7 +38,12 @@ const getBookById = (id, callback) => {
   books.findById(id, callback);
 };
 
+const addBook = (book, callback) => {
+  books.create(book, callback);
+};
+
 module.exports = {
+  addBook,
   getBooks,
   getBookById
 };

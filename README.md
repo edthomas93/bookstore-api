@@ -1,6 +1,6 @@
 # bookstore-api
 
-I challanged myself to create an API using node.js, express and mongodb to get a deeper understanding of the intricacies of APIs.
+I challenged myself to create an API using node.js, express and mongodb to get a deeper understanding of the intricacies of APIs.
 
 ## Run tests
 
@@ -110,3 +110,29 @@ On success, the above command returns JSON structured like this:
   image_url: "https://cdn.waterstones.com/bookjackets/large/9780/1414/9780141439662.jpg",
   buy_url: "https://www.waterstones.com/book/sense-and-sensibility/jane-austen/ros-ballaster/9780141439662"
 }
+
+#### POST `/api/books`
+
+Creates a new book.
+
+```bash
+curl "http://localhost:3000/api/books" \
+  -X POST \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Nine Perfect Strangers", "genre": "Crime & mystery", "author": "Liane Moriarty", "pages": 448, "image_url": "https://cdn.waterstones.com/bookjackets/large/9781/4059/9781405919463.jpg", "buy_url": "https://www.waterstones.com/book/nine-perfect-strangers/liane-moriarty/9781405919463"}'
+```
+
+On success, the above command returns JSON structured like this:
+
+```json
+{
+    "_id": "5cd1abc3f880c4a9335863f3",
+    "title": "Nine Perfect Strangers",
+    "genre": "Crime & mystery",
+    "author": "Liane Moriarty",
+    "pages": 448,
+    "image_url": "https://cdn.waterstones.com/bookjackets/large/9781/4059/9781405919463.jpg",
+    "buy_url": "https://www.waterstones.com/book/nine-perfect-strangers/liane-moriarty/9781405919463",
+    "__v": 0
+}
+```

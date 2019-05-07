@@ -24,4 +24,16 @@ router.get('/:_id', (req, res) => {
   });
 });
 
+router.post('/', (req, res) => {
+  const book = req.body;  
+  bookModel.addBook(book, (err, response) => {
+    if (err) {
+      res.sendStatus(500);
+      throw err;
+    } else {
+      res.status(200).json(response);
+    };
+  });
+});
+
 module.exports = router;
