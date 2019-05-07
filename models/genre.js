@@ -22,7 +22,16 @@ const addGenre = (genre, callback) => {
   genres.create(genre, callback);
 };
 
+const updateGenre = (id, genre, options, callback) => {
+  const query = {_id: id};
+  const update = {
+    name: genre.name
+  };
+  genres.findOneAndUpdate(query, update, options, callback);
+}
+
 module.exports = {
+  addGenre,
   getGenres,
-  addGenre
+  updateGenre
 };

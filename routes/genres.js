@@ -25,4 +25,17 @@ router.post('/', (req, res) => {
   });
 });
 
+router.put('/:_id', (req, res) => {
+  const id = req.params._id
+  const genre = req.body;  
+  genreModel.updateGenre(id, genre, {}, (err, response) => {
+    if (err) {
+      res.sendStatus(500);
+      throw err;
+    } else {
+      res.status(200).json(response);
+    };
+  });
+});
+
 module.exports = router;

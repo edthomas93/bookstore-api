@@ -23,12 +23,12 @@ On success, the above command returns JSON structured like this:
 ```
 [
   {
-    _id: "5ccb576be7179a596b1a1f79",
+    _id: "1",
     name: "Horror & ghost stories",
     create_date: "2019-05-02T21:15:04.442Z"
     },
     {
-    _id: "5ccb5713e7179a596b1a1f32",
+    _id: "2",
     name: "Classic fiction",
     create_date: "2019-05-02T21:15:04.442Z"
   }
@@ -43,16 +43,37 @@ Creates a new genre.
 curl "http://localhost:3000/api/genres" \
   -X POST \
   -H "Content-Type: application/json" \
-  -d '{"name": "Mythology"}'
+  -d '{"name": "New Genre"}'
+```
+On success, the above command returns JSON structured like this:
+
+```json
+{
+    "_id": "3",
+    "name": "New Genre",
+    "create_date": "2019-05-03T15:32:54.686Z",
+    "__v": 0
+}
+```
+
+#### PUT `/api/genres/:_id`
+
+Updates a genre.
+
+```bash
+curl "http://localhost:3000/api/genres/4" \
+  -X PUT \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Updated Genre Name"}'
 ```
 
 On success, the above command returns JSON structured like this:
 
 ```json
 {
-    "_id": "5ccc8410969c629b59468d5b",
-    "name": "Mythology",
-    "create_date": "2019-05-03T18:10:24.198Z",
+    "_id": "4",
+    "name": "Previous Genre Name",
+    "create_date": "2019-05-03T15:32:54.686Z",
     "__v": 0
 }
 ```
@@ -90,7 +111,7 @@ On success, the above command returns JSON structured like this:
 ]
 ```
 
-#### GET `/api/books/:id`
+#### GET `/api/books/:_id`
 
 Returns an individual book
 
@@ -110,6 +131,7 @@ On success, the above command returns JSON structured like this:
   image_url: "https://cdn.waterstones.com/bookjackets/large/9780/1414/9780141439662.jpg",
   buy_url: "https://www.waterstones.com/book/sense-and-sensibility/jane-austen/ros-ballaster/9780141439662"
 }
+```
 
 #### POST `/api/books`
 
